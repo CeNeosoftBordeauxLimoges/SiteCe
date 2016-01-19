@@ -3,8 +3,7 @@
 namespace Extranet\DocumentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-//use Extranet\MediaBundle\Validator\Constraints as Assert;
+//use Extranet\MediaBundle\Validator\Constraints as Assert;	
 
 /**
  * Document
@@ -123,56 +122,17 @@ class Document
         $this->active = false;
         //$this->medias = new \Doctrine\Common\Collections\ArrayCollection();
     }
-/*
-    public function getAbsolutePath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir().'/'.$this->path;
-    }
 
-    public function getWebPath()
-    {
-        return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
-        //return  $this->getUploadDir() . '/' . $this->path;
-    }
-*/
     protected function getUploadRootDir()
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
-
-  /*  public function setUploadDir($uploadDir)
-    {
-        $this->uploadDir = $uploadDir;
-
-        return $this;
-    }
-  */
 
     public function getUploadDir()
     {
         //return $this->uploadDir;
         return 'uploads/documents';
     }
-
-  /*  /**
-     * Sets file.
-     *
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     */
-    /*public function setFile(\Symfony\Component\HttpFoundation\File\UploadedFile  $file = null)
-    {
-        $this->file = $file;
-        // check if we have an old file path
-        if (isset($this->path)) {
-            // store the old name to delete after the update
-            $this->temp = $this->path;
-            $this->path = null;
-        } else {
-            $this->path = 'initial';
-        }
-    }*/
 
     /**
      * @ORM\PrePersist()
@@ -214,18 +174,6 @@ class Document
      */
     public function upload()
     {
-       // if (null === $this->medias) {
-      //      return;
-      //  }
-
-        // if there is an error when moving the file, an exception will
-        // be automatically thrown by move(). This will properly prevent
-        // the entity from being persisted to the database on error
-       // $this->medias = $this->file;
-       // $this->medias->move($this->getUploadRootDir(), $this->path);
-
-
-        //$this->medias = null;
         unset($this->file);
     }
 
@@ -238,30 +186,7 @@ class Document
             unlink($file);
         }
     }
-/*
-    /**
-     * Get path
-     *
-     * @return string
-     */
- /*   public function getPath()
-    {
-        return $this->path;
-    }
-/*
-    /**
-     * Set path
-     *
-     * @param  string  $path
-     * @return Document
-     */
-  /*  public function setPath($path)
-    {
-        $this->path = $path;
 
-        return $this;
-    }
-*/
     public static function initDocument($utilisateur)
     {
         $document= new document();

@@ -1,0 +1,14 @@
+parameters:
+    extranet_concours.concours_manager.class: Extranet\ConcoursBundle\Manager\ConcoursManager
+    extranet_concours.reponse_manager.class: Extranet\ConcoursBundle\Manager\ReponseManager
+
+services:
+    # Concours entity manager
+    extranet_concours.concours_manager:
+        class: %extranet_concours.concours_manager.class%
+        arguments: [ "@doctrine.orm.default_entity_manager", "@logger" ]
+        
+    # Reponse entity manager
+    extranet_concours.reponse_manager:
+        class: %extranet_concours.reponse_manager.class%
+        arguments: [ "@doctrine.orm.default_entity_manager", "@logger" ]

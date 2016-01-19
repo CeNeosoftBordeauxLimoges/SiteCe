@@ -41,7 +41,7 @@
                             {# ---------- Logo ---------- #}
                             <div id="logo">
                                 {% block logo %}
-                                    <a href="/" title="Accueil">
+                                    <a href={{ path('extranet_utilisateur_accueil_homepage') }} title="Accueil">
                                         <img src="{{ asset('base/images/logoCE.png') }}" alt="Néo-Soft" title="Néo-Soft" />
                                     </a>
                                 {% endblock logo %}
@@ -55,6 +55,8 @@
                                             <li><a href= {{ path('extranet_utilisateur_accueil_homepage') }} title="Accueil" class="link_menu">Accueil</a></li>
 
                                             <li><a href="{{ path('extranet_document_homepage') }}" title="Documents" class="link_menu">Documents</a></li>
+                                            
+                                            <li><a href="{{ path('extranet_concours_homepage') }}" title="Concours" class="link_menu">Concours</a></li>
 
                                             {% if is_granted('ROLE_SUPER_ADMIN') %}
 

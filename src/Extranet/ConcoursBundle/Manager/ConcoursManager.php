@@ -1,12 +1,12 @@
 <?php
 
-namespace Extranet\DocumentBundle\Manager;
+namespace Extranet\ConcoursBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
-use Extranet\DocumentBundle\Entity\Document;
+use Extranet\ConcoursBundle\Entity\Concours;
 use Psr\Log\LoggerInterface;
 
-class DocumentManager extends BaseManager
+class ConcoursManager extends BaseManager
 {
     protected $em;
     protected $logger;
@@ -32,11 +32,11 @@ class DocumentManager extends BaseManager
         return $this->getRepository()->findAll();
     }
 
-    public function postAjout (Document $document)
+    public function postAjout (Concours $concours)
     {
-        $document->setDate(new \DateTime());
+        $concours->setDate(new \DateTime());
 
-        $this->get('extranet_document.document_manager')->persistAndFlush($document);
+        $this->get('extranet_concours.concours_manager')->persistAndFlush($concours);
     }
 
     /**
@@ -44,9 +44,9 @@ class DocumentManager extends BaseManager
      *
      * @param Document $document
      */
-    public function removeDocument(Document $document)
+    public function removeConcours(Concours $concours)
     {
-        return $this->removeAndFlush($document);
+        return $this->removeAndFlush($concours);
     }
 
     /**
@@ -54,14 +54,14 @@ class DocumentManager extends BaseManager
      *
      * @param Document $document
      */
-    public function saveDocument(Document $document)
+    public function saveConcours(Concours $concours)
     {
-        return $this->persistAndFlush($document);
+        return $this->persistAndFlush($concours);
     }
 
     public function getRepository()
     {
-        return $this->em->getRepository('ExtranetDocumentBundle:Document');
+        return $this->em->getRepository('ExtranetConcoursBundle:Concours');
     }
 
     public function getManager()

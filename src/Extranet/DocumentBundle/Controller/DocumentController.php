@@ -3,8 +3,8 @@
 namespace Extranet\DocumentBundle\Controller;
 
 use Extranet\DocumentBundle\Entity\Document;
-use Extranet\DocumentBundle\Form\Type\Document\DocumentType;
 use Extranet\DocumentBundle\Form\Type\Document\DocumentModifierType;
+use Extranet\DocumentBundle\Form\Type\Document\DocumentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

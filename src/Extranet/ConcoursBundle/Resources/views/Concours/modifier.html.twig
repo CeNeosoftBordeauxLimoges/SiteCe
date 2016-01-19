@@ -1,0 +1,65 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parent() }} - Modifier un concours{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Accueil">Accueil</a>
+    &raquo;&nbsp;
+    <a href="{{ path('extranet_concours_homepage') }}" title="Concours">Concours</a>
+    &raquo;&nbsp;Modifier un document
+{% endblock breadcrumbs %}
+
+{% block content %}
+
+    <h1>Modifier un concours</h1>
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right">{{ form_label(form.titre) }} *</div>
+            <div class="col-md-4">{{ form_widget(form.titre,{ 'attr': {'size': 50} })}}</div>
+            <div class="error">{{ form_errors(form.titre) }}</div>
+        </div></BR>
+
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right">{{ form_label(form.description) }}</div>
+            <div class="col-md-4">{{ form_widget(form.description, { 'attr': {'rows': 50},'attr':{'cols':50} }) }}</div>
+            <div class="error">{{ form_errors(form.description) }}</div>
+        </div></BR>
+
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right">{{ form_label(form.date_limite) }}</div>
+            <div class="col-md-4">{{ form_widget(form.date_limite) }}</div>
+            <div class="error">{{ form_errors(form.date_limite) }}</div>
+        </div></BR>
+
+        <p>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <p>
+                    <input type="submit" value="Enregistrer les modifications" class="btn btn-default btn-sm" />
+                </p>
+            </div>
+
+            <a href="{{ path('extranet_concours_homepage') }}" onclick="return confirm('Retour à la liste des concours (les données saisies seront perdues) ? ')">
+                <button type="button"class="btn btn-default btn-sm">Annuler</button>
+            </a>
+        </div>
+    </p>
+
+    {{ form_end(form) }}
+
+    <p>
+        <h5>* Champs obligatoires</h5>
+    </p>
+
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+ {% endblock javascripts %}

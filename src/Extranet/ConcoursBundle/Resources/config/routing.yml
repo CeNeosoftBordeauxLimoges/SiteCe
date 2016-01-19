@@ -1,0 +1,15 @@
+extranet_concours_homepage:
+    path:     /concours
+    defaults: { _controller: ExtranetConcoursBundle:Concours:index }
+    
+extranet_concours_ajouter:
+    path:     /concours/ajouter
+    defaults: { _controller: ExtranetConcoursBundle:Concours:ajouter }
+
+extranet_concours_supprimer:
+    path:     /concours/supprimer/{idConcours}
+    defaults: { _controller: ExtranetConcoursBundle:Concours:supprimer }
+    
+extranet_concours_modifier:
+    path:     /concours/modifier/{idConcours}
+    defaults: { _controller: ExtranetConcoursBundle:Concours:modifier }

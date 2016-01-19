@@ -46,15 +46,15 @@
                     </td>
                     <td>
 
-                        <a href="{{ path('extranet_utilisateur_utilisateur_modifier', { 'id': entity.id }) }}"><img src="base/images/Edit.png" ></a>
-                        <a href="{{ path('extranet_utilisateur_utilisateur_supprimer', { 'id': entity.id }) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cet utilisateur?')"><img src="base/images/croix.png" ></a>
+                        <a href="{{ path('extranet_utilisateur_utilisateur_modifier', { 'id': entity.id }) }}"><img src="{{ asset('base/images/Edit.png') }}" ></a>
+                        <a href="{{ path('extranet_utilisateur_utilisateur_supprimer', { 'id': entity.id }) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cet utilisateur?')"><img src="{{ asset('base/images/croix.png') }}" ></a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
 
-             <a href="{{ path('extranet_utilisateur_utilisateur_ajouter') }}"><img src="base/images/ajout.png">    Ajouter un utilisateur</a>
+             <a href="{{ path('extranet_utilisateur_utilisateur_ajouter') }}"><img src="{{ asset('base/images/ajout.png') }}">    Ajouter un utilisateur</a>
     </div>
 
 {% endblock content %}

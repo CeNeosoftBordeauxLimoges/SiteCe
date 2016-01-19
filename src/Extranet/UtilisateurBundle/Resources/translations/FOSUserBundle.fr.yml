@@ -36,7 +36,7 @@ profile:
     edit:
         submit: Mettre à jour
     flash:
-        updated: Le profil a été mis à jour
+        updated:  "Le profil a été mis à jour !"
 
 # Password change
 change_password:

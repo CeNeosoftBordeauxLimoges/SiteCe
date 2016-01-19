@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Extranet\ConcoursBundle\Entity\UtilisateurConcours" table="utilisateur_concours">
+    <indexes>
+      <index name="FK_UC_concours" columns="idConcours"/>
+      <index name="FK_UC_reponse" columns="idreponse"/>
+      <index name="IDX_51D5A8095D419CCB" columns="idUtilisateur"/>
+    </indexes>
+    <id name="idutilisateur" association-key="true"/>
+    <id name="idconcours" association-key="true"/>
+    <id name="idreponse" association-key="true"/>
+    <field name="repondu" type="boolean" column="repondu" nullable="true"/>
+    <one-to-one field="idreponse" target-entity="Reponse" fetch="LAZY">
+      <join-columns>
+        <join-column name="idreponse" referenced-column-name="idReponse"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="idconcours" target-entity="Concours" fetch="LAZY">
+      <join-columns>
+        <join-column name="idConcours" referenced-column-name="idConcours"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="idutilisateur" target-entity="Utilisateur" fetch="LAZY">
+      <join-columns>
+        <join-column name="idUtilisateur" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

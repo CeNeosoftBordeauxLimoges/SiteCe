@@ -1,12 +1,12 @@
 <?php
 
-namespace Extranet\DocumentBundle\Form\Type\Document;
+namespace Extranet\ConcoursBundle\Form\Type\Concours;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DocumentType extends AbstractType
+class ConcoursModifierType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,14 +15,16 @@ class DocumentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add ('type','text', array(
-                'required'  => false
+        	->add('titre', 'text', array(
+                'required'  => true
             ))
-            ->add('file', 'file', array(
-                'data_class' => null,
-                'label'      => 'Ajouter un document',
-                'required' => true
+            ->add('description', 'textarea', array(
+                'required'  => true
+            ))
+            ->add('date_limite','date', array(
+    				'input'  => 'datetime',
+    				'widget' => 'single_text',
+            		'required' => true
             ));
     }
 
@@ -32,7 +34,7 @@ class DocumentType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Extranet\DocumentBundle\Entity\Document'
+            'data_class' => 'Extranet\ConcoursBundle\Entity\Concours'
         ));
     }
 
@@ -41,6 +43,6 @@ class DocumentType extends AbstractType
      */
     public function getName()
     {
-        return 'extranetdocumentbundle_document';
+        return 'extranetconcoursbundle_concours';
     }
 }
