@@ -11,3 +11,6 @@
 /composer.phar
 /composer.lock
 /nbproject/private/
+.settings/
+.project
+.buildpath

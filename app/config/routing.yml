@@ -1,3 +1,7 @@
+extranet_concours:
+    resource: "@ExtranetConcoursBundle/Resources/config/routing.yml"
+    prefix:   /
+    
 extranet_document:
     resource: "@ExtranetDocumentBundle/Resources/config/routing.yml"
     prefix:   /
