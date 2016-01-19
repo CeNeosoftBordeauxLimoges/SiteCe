@@ -1,0 +1,9 @@
+parameters:
+    extranet_document.document_manager.class: Extranet\DocumentBundle\Manager\DocumentManager
+
+services:
+    # Document entity manager
+    extranet_document.document_manager:
+        class: %extranet_document.document_manager.class%
+        arguments: [ "@doctrine.orm.default_entity_manager", "@logger" ]
+        

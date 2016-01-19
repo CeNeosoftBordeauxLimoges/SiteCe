@@ -1,0 +1,81 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parent() }} - Utilisateurs{% endblock %}
+
+{% block breadcrumbs -%}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Accueil">Accueil</a>
+    &raquo;&nbsp;Gestion utilisateurs
+{% endblock breadcrumbs %}
+
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('base/css/extranet.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/extranetutilisateur/css/utilisateur.css') }}" />
+{% endblock %}
+
+{% block content %}
+
+    <div id="utilisateurs_content">
+
+        <h1>Liste des utilisateurs</h1></br>
+
+        <table id="utilisateur" class="table table-striped table-bordered" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Nom d'utilisateur</th>
+                    <th>Adresse email</th>
+                    <th>Agence</th>
+                    <th>Rôles</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.username }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>{{ entity.agence|capitalize }}</td>
+                    <td>
+                        <ul>
+                        {% for group in entity.groups %}
+                            <li>{{ group.name }}</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+
+                        <a href="{{ path('extranet_utilisateur_utilisateur_modifier', { 'id': entity.id }) }}"><img src="base/images/Edit.png" ></a>
+                        <a href="{{ path('extranet_utilisateur_utilisateur_supprimer', { 'id': entity.id }) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cet utilisateur?')"><img src="base/images/croix.png" ></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+             <a href="{{ path('extranet_utilisateur_utilisateur_ajouter') }}"><img src="base/images/ajout.png">    Ajouter un utilisateur</a>
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#utilisateur').dataTable({
+                "order": [[ 0, "asc" ]],
+                "bFilter": false,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            })
+        } );
+    </script>
+
+{% endblock %}

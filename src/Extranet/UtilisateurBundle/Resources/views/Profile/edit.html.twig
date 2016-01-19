@@ -1,0 +1,111 @@
+{% extends '::base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title -%}{{ parent() }} - Modifier mon compte{% endblock %}
+
+{% block breadcrumbs -%}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Accueil">Accueil</a>
+    &raquo;&nbsp;<a href="{{ path('fos_user_profile_show') }}" title="Mon compte">Mon compte</a>
+    &raquo;&nbsp;Modifier mon compte
+{% endblock breadcrumbs %}
+
+{% block content -%}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right"><B>{{ "Nom d'utilisateur" }}</B> </div>
+        <div class="col-md-4">{{ form_widget(form.username, { 'attr': {'readonly': 'readonly'},  'attr': {'size': 50} }) }}</div>
+        <div class="error">{{ form_errors(form.username) }}</div>
+    </div></br>
+
+    <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right">{{ form_label(form.nom) }} </div>
+        <div class="col-md-4">{{ form_widget(form.nom, { 'attr': {'readonly': 'readonly'},  'attr': {'size': 50} }) }}</div>
+        <div class="error">{{ form_errors(form.nom) }}</div>
+    </div></br>
+
+    <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right">{{ form_label(form.prenom) }} </div>
+        <div class="col-md-4">{{ form_widget(form.prenom, { 'attr': {'readonly': 'readonly'},  'attr': {'size': 50} }) }}</div>
+        <div class="error">{{ form_errors(form.prenom) }}</div>
+    </div></br>
+
+    <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right">{{ form_label(form.email) }} *</div>
+        <div class="col-md-4"> {{ form_widget(form.email, {'attr': {'size': 50} }) }}</div>
+        <div class="error">{{ form_errors(form.email) }}</div>
+    </div></br>
+
+    <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right">{{ form_label(form.adresse)}} </div>
+        <div class="col-md-4"> {{ form_widget(form.adresse, { 'attr': {'size': 50} }) }}</div>
+        <div class="error">{{ form_errors(form.adresse) }}</div>
+    </div></br>
+
+    <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right">{{ form_label(form.ville) }}</div>
+        <div class="col-md-4"> {{ form_widget(form.ville, { 'attr': {'size': 50} }) }}</div>
+        <div class="error">{{ form_errors(form.ville) }}</div>
+    </div></br>
+
+    <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right">{{ form_label(form.codePostal) }}</div>
+        <div class="col-md-4"> {{ form_widget(form.codePostal, { 'attr': {'size': 50} }) }}</div>
+        <div class="error">{{ form_errors(form.codePostal) }}</div>
+    </div></br>
+
+    <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right"><B>{{ "Numéro de téléphone" }}</B></div>
+        <div class="col-md-4"> {{ form_widget(form.telPerso, { 'attr': {'size': 50} }) }}</div>
+        <div class="error">{{ form_errors(form.telPerso) }}</div>
+    </div></br>
+
+   {#  <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right"><B>{{ "Nombre d'enfants" }}</B></div>
+        <div class="col-md-4"> {{ form_widget(form.nbEnfants, { 'attr': {'size': 50} }) }}</div>
+        <div class="error">{{ form_errors(form.nbEnfants) }}</div>
+    </div></br>
+
+    <div class="row" id="row_edit_user">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 align_right">{{ form_label(form.profil) }}</div>
+        <div class="col-md-4"> {{ form_widget(form.profil, { 'attr': {'rows': 50},'attr':{'cols':50} }) }}</div>
+        <div class="error">{{ form_errors(form.profil) }}</div>
+    </div></br>#}
+
+    <p>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+                <p>
+                    <input type="submit" value="Valider les modifications" onclick="alert('Modifications enregistrées !')" class="btn btn-default btn-sm" />
+                </p>
+            </div>
+
+            <div class="col-md-2">
+                <p>
+                    <a href="{{ path('fos_user_profile_show') }}" onclick="return confirm('Retour au profil (les données saisies seront perdues) ? ')">
+                        <button type="button"class="btn btn-default btn-sm">Annuler</button>
+                    </a>
+                </p>
+            </div>
+        </div>
+
+
+    {{ form_end(form) }}
+
+    <p>
+         <h5>* Champs obligatoires</h5>
+    </p>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% block subject -%}
+    Création compte Extranet Néo-Soft Limoges : votre mot de passe.
+{%- endblock subject %}
+
+{% block body_text -%}
+    Bonjour {{ utilisateur.prenom ~ ' ' ~ utilisateur.nom }},<br />
+    <br />
+    Votre compte vient d'être crée sur l'extranet Néo-Soft Limoges.<br />
+    Votre mot de passe est {{ password }}<br />
+    <br />
+    Cordialement,<br />
+    <br />
+    L'équipe Néo-Soft Limoges.
+{%- endblock %}
+
+{% block body_html -%}
+    Bonjour {{ utilisateur.prenom ~ ' ' ~ utilisateur.nom }},<br />
+    <br />
+    Votre compte vient d'être crée sur l'extranet Néo-Soft Limoges.<br />
+    Votre mot de passe est {{ password }}<br />
+    <br />
+    Cordialement,<br />
+    <br />
+    L'équipe Néo-Soft Limoges.
+{%- endblock %}

@@ -1,0 +1,92 @@
+{% extends '::base.html.twig' %}
+
+{% block title -%}{{ parent() }} - Ajouter un utilisateur{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/extranetutilisateur/css/utilisateur.css') }}" />
+{% endblock %}
+
+{% block breadcrumbs -%}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Accueil">Accueil</a>
+    &raquo;&nbsp;<a href="{{ path('extranet_utilisateur_utilisateur_homepage') }}" title="Gestion utilisateurs">Gestion utilisateurs</a>
+    &raquo;&nbsp;Ajouter un utilisateur
+{% endblock breadcrumbs %}
+
+{% block content -%}
+
+    <h1>Ajouter un utilisateur</h1>
+
+    <div id="utilisateurs_content">
+
+        {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            <div class="row" id="row_edit_user">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 align_right">{{ form_label(form.username, 'Nom d\'utilisateur * ') }}</div>
+                <div class="col-md-4">{{ form_widget(form.username, { 'attr': {'size': 50} }) }}</div>
+                {{ form_errors(form.username) }}
+            </div>
+
+            <div class="row" id="row_edit_user">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 align_right">{{ form_label(form.nom, 'Nom * ') }}</div>
+                <div class="col-md-4">{{ form_widget(form.nom, { 'attr': {'size': 50} }) }}</div>
+                {{ form_errors(form.nom) }}
+            </div>
+
+            <div class="row" id="row_edit_user">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 align_right">{{ form_label(form.prenom, 'Prénom * ') }}</div>
+                <div class="col-md-4">{{ form_widget(form.prenom, { 'attr': {'size': 50} }) }}</div>
+                {{ form_errors(form.prenom) }}
+            </div>
+
+            <div class="row" id="row_edit_user">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 align_right">{{ form_label(form.password, 'Mot de passe * ') }}</div>
+                <div class="col-md-4">{{ form_widget(form.password, { 'attr': {'size': 50} }) }}</div>
+                {{ form_errors(form.password) }}
+            </div>
+
+            <div class="row" id="row_edit_user">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 align_right">{{ form_label(form.email, 'Email * ') }}</div>
+                <div class="col-md-4">{{ form_widget(form.email, { 'attr': {'size': 50} }) }}</div>
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="row" id="row_edit_user">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 align_right">{{ form_label(form.agence, 'Agence * ') }}</div>
+                <div class="col-md-4">{{ form_widget(form.agence, { 'attr': {'size': 50} }) }}</div>
+                {{ form_errors(form.agence) }}
+            </div>
+
+            <div class="row" id="row_edit_user">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 align_right">{{ form_label(form.groups, 'Groupe d\'utilisateur * ') }}</div>
+                <div class="col-md-4">{{ form_widget(form.groups, { 'attr': {'class': 'form-control input-ms'} }) }}</div>
+                {{ form_errors(form.groups) }}
+            </div>
+
+            <div class="row" id="row_edit_user">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    <input type="submit" value="Enregistrer l'utilisateur" class="btn btn-default btn-sm" />
+                </div>
+                <div class="col-md-1">
+                    <a href="{{ path('extranet_utilisateur_utilisateur_homepage') }}" title="Gestion utilisateurs" onclick="return confirm('Retour à la liste des utilisateurs (les données saisies seront perdues) ? ')">
+                        <button type="button" class="btn btn-default btn-sm">Annuler</button>
+                    </a>
+                </div>
+            </div>
+
+        {{ form_end(form) }}
+
+        <h5>* Champs obligatoires</h5>
+
+    </div>
+
+{% endblock content %}

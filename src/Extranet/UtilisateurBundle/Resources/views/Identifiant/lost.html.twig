@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets %}
+
+{% block title -%}{{ parent() }} - Identifiant perdu{% endblock %}
+
+{% block breadcrumbs -%}
+    Identifiant perdu
+{% endblock breadcrumbs %}
+
+{% block content -%}
+
+    <h1>Identifiant perdu</h1>
+    <div id="login">
+        <h3>Renseignez le champ ci-dessous : </h3>
+
+        {{ form_start(form) }}
+
+            <div class="input_form_input">
+                {{ form_label(form.email, 'Email : ') }}
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email) }}
+            </div>
+            <input type="submit" class="form_submit form_input"/>
+            <hr class="separator" />
+        {{ form_end(form) }}
+
+        <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Retour à la page de connexion" class="id_perdu">Retour à la page de connexion</a>
+    </div>
+
+{% endblock content %}

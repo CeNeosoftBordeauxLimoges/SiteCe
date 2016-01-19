@@ -1,0 +1,4 @@
+extranet_utilisateur_accueil_homepage:
+    pattern:  /
+    defaults: { _controller: ExtranetUtilisateurBundle:Accueil:index }
+

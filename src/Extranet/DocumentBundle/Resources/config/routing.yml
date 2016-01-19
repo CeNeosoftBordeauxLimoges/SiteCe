@@ -1,0 +1,35 @@
+extranet_document_homepage:
+    pattern:  /document
+    defaults: { _controller: ExtranetDocumentBundle:Document:index }
+
+extranet_document_afficher:
+    pattern:  /document/{id}/afficher
+    defaults: { _controller: ExtranetDocumentBundle:Document:afficher }
+
+extranet_document_ajouter:
+    pattern:  /document/ajouter
+    defaults: { _controller: ExtranetDocumentBundle:Document:ajouter }
+
+extranet_document_modifier:
+    pattern:  /document/{id}/modifier
+    defaults: { _controller: ExtranetDocumentBundle:Document:modifier }
+
+extranet_document_supprimer:
+    pattern:  /document/{id}/supprimer
+    defaults: { _controller: ExtranetDocumentBundle:Document:supprimer }
+
+extranet_document_telecharger:
+    pattern:  /document/{id}/telecharger
+    defaults: { _controller: ExtranetDocumentBundle:Document:telecharger }
+
+extranet_document_utilisateur:
+    pattern:  /document/{id}/utilisateur/
+    defaults: { _controller: ExtranetDocumentBundle:Document:utilisateur }
+
+extranet_document_activer:
+    pattern:  /document/{id}/activer/
+    defaults: { _controller: ExtranetDocumentBundle:Document:activer }
+
+extranet_document_desactiver:
+    pattern:  /document/{id}/desactiver/
+    defaults: { _controller: ExtranetDocumentBundle:Document:desactiver }

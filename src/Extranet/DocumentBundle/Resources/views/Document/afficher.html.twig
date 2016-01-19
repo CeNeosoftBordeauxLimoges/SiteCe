@@ -1,0 +1,60 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ document.titre }}{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Accueil">Accueil</a>
+    &raquo;&nbsp;<a href="{{ path('extranet_document_homepage') }}" title="Documents">Documents</a>
+    &raquo;&nbsp;{{ document.titre }}
+{% endblock breadcrumbs %}
+
+{% block content %}
+
+    <h1>{{ document.titre }}</h1>
+
+    <div class="informations">
+        Mis en ligne par {{ document.utilisateur }} le {{ document.date|date('d/m/Y') }}
+    </div>
+
+     <div id="detail">
+          <div class="images">
+              <div class="image">
+                  <img src ="" alt="" title="" />
+              </div>
+              <div class="thumbnails">
+                  <ul class="gallery clearfix">
+                      {% for media in document.medias %}
+                          <a href="{{ ( documentsFolder ~ '/' ~ media.media.path) | imagine_filter('document_small') }}" >
+                          <img src="{{ ( documentsFolder ~ '/' ~ media.media.path) | imagine_filter('document_small') }}" /></a>
+                      {% endfor %}
+                  </ul>
+              </div>
+          </div>
+        <div class="description">
+            {{ document.description }}
+        </div>
+        <div class="type">
+            {{ document.type }}
+        </div>
+    </div>
+
+    <div id="right">
+
+       {% if document.utilisateur.id == app.user.id %}
+            <div>
+                <h4>Gérer le document</h4>
+                <div class="content">
+                    <a href="{{ path('extranet_document_modifier', {'id' : document.id}) }}">Modifier</a>
+                    {% if document.active == 1 %}
+                        <a href="{{ path('extranet_document_desactiver', {'id' : document.id}) }}">Désactiver</a>
+                    {% else %}
+                        <a href="{{ path('extranet_document_activer', {'id' : document.id}) }}">Activer</a>
+                    {% endif %}
+                    <a href="{{ path('extranet_document_supprimer', {'id' : document.id}) }}">Supprimer</a>
+                </div>
+            </div>
+       {% endif %}
+
+    </div>
+
+{% endblock content %}

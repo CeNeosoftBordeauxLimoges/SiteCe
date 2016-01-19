@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parent() }} - Documents{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Accueil">Accueil</a>
+    &raquo;&nbsp;Documents
+{% endblock breadcrumbs %}
+
+{% block content %}
+
+    <h1>Documents</h1>
+
+    <div class="actions">
+        <a href="{{ path('extranet_document_ajouter') }}" title="Déposer une document">Déposer un document</a>
+        <a href="{{ path('extranet_document_utilisateur', { 'id': app.user.id }) }}" title="Mes documents">Mes documents</a>
+    </div>
+
+    <form action="" class="recherche">
+        <input type="text" name="recherche" id="recherche" placeholder="Rechercher..." />
+        <input type="submit" name="" value="Rechercher" />
+    </form>
+
+    <div id="documents">
+        {% for document in documents %}
+            <a class="document_link" href="{{ path('extranet_document_afficher', { 'id': document.id }) }}" />
+                <div class="document{% if loop.index == 1 %} first{% endif %}">
+                    <div class="date">{{ document.date|date("d/m/Y") }}</div>
+                    <div class="image">
+                        {% for media in document.medias %}
+                            {% if loop.first %}
+                                <img src ="{{ ( documentsFolder ~ '/' ~ media.media.path) | imagine_filter('document_small') }}" alt="{{ document.titre }}" title="{{ document.titre }}" />
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="detail">
+                        <h3 class="titre">{{ document.titre }}</h3>
+                        <div class="description">
+                            {% if document.description|length < 121 %}
+                            <p>{{ document.description }}</p>
+                            {% else %}
+                            <p>{{ document.description|truncate(120, false, "[...]")|raw }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr class="separator" />
+                </div>
+            </a>
+        {% else %}
+            Aucun document.
+        {% endfor %}
+    </div>
+
+    {% if documents|length > 10 %}
+    <div class="pagination">
+
+    </div>
+    {% endif %}
+{% endblock content %}

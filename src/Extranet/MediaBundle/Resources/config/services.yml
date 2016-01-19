@@ -1,0 +1,35 @@
+parameters:
+#    extranet_media.example.class: Extranet\MediaBundle\Example
+    extranet_media.doctrine_upload.listener.class: Extranet\MediaBundle\Listener\Doctrine\UploadListener
+    extranet_media.file_type_extension.class: Extranet\MediaBundle\Form\Extension\FileTypeExtension
+    twig.globals.vars.class: Extranet\MediaBundle\Listener\Twig\GlobalVar
+
+services:
+#    extranet_media.example:
+#        class: %extranet_media.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    # doctrine upload listener
+    extranet_media.doctrine_upload:
+        class: %extranet_media.doctrine_upload.listener.class%
+        mode: lazy
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: preRemove }
+
+    # file type extension
+    extranet_media.file_type_extension:
+        class: %extranet_media.file_type_extension.class%
+        mode: lazy
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: form.type_extension, alias: file }
+
+    # twig global vars
+    twig.globals.vars:
+        class: %twig.globals.vars.class%
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: twig.extension }

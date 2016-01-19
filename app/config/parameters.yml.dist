@@ -1,0 +1,25 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: true
+
+    mailer.noreply.address: extranet-ns@yopmail.fr
+    mailer.utilisateur.login.create: 'ExtranetUtilisateurBundle:Mailer/Utilisateur/Login:create.txt.twig'
+    mailer.utilisateur.login.lost: 'ExtranetUtilisateurBundle:Mailer/Utilisateur/Login:lost.txt.twig'
+    mailer.utilisateur.password.create: 'ExtranetUtilisateurBundle:Mailer/Utilisateur/Password:create.txt.twig'
+    medias.repertoire.annonces: 'medias/images/annonces'

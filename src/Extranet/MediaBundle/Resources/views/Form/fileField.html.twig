@@ -1,0 +1,11 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block file_widget %}
+    {% spaceless %}
+        {#  {% if file_url is not null and file_path is not null %}
+            <img src="{{ (file_url)|imagine_filter('annonce_small') }}" />
+        {% else %} #}
+            {{ block('form_widget') }}
+        {# {% endif %} #}
+    {% endspaceless %}
+{% endblock file_widget %}

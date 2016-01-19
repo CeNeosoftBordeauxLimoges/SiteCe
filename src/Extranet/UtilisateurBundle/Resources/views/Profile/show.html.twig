@@ -1,0 +1,98 @@
+{% extends '::base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets %}
+
+{% block title -%}
+    {{ parent() }} - Mon compte
+{% endblock title %}
+
+{% block breadcrumbs -%}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="accueil">Accueil</a>
+    &raquo;&nbsp;Mon compte
+{% endblock breadcrumbs %}
+
+{% block content -%}
+
+    <div class="fos_user_user_show">
+
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'profile.show.username'|trans }} :</B></div>
+            <div class="col-md-4">{{ user.username }}</div>
+        </div></br>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'profile.show.nom'|trans }} : </B></div>
+            <div class="col-md-4">{{ user.nom }}</div>
+        </div></br>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'profile.show.prenom'|trans }} : </B></div>
+            <div class="col-md-4">{{ user.prenom }}</div>
+        </div></br>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'profile.show.email'|trans }} : </B></div>
+            <div class="col-md-4">{{ user.email }}</div>
+        </div></br>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'profile.show.adresse'|trans }} :</B></div>
+            <div class="col-md-4">{{ user.adresse }}</div>
+        </div></br>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'profile.show.codePostal'|trans }} :</B></div>
+            <div class="col-md-4">{{ user.codePostal }}</div>
+        </div></br>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'profile.show.ville'|trans }} :</B></div>
+            <div class="col-md-4">{{ user.ville }}</div>
+        </div></br>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'profile.show.telPerso'|trans }} :</B></div>
+            <div class="col-md-4">{{ user.telPerso }}</div>
+        </div></br>
+        {#<div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'Nombre d\'enfants' }} :</B></div>
+            <div class="col-md-4">{{ user.nbEnfants }}</div>
+        </div></br>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right"><B>{{ 'Profil' }} :</B></div>
+            <div class="col-md-4">{{ user.profil }}</div>
+        </div>#}
+    </div>
+    </br>
+    <div class="row" id="row_edit_user">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            {# <div class="col-md-4"></div>
+             <div class="col-md-5 "><a href="{{ path('fos_user_profile_edit') }}" title="Modifier mon compte">Modifier mon compte </a>
+            <a href="{{ path('fos_user_change_password') }}" title="Modifier mon mot de passe">Modifier mon mot de passe</a></div>
+            #}
+            <a href="{{ path('fos_user_profile_edit') }}" title="Modifier mon compte">
+                <button type="button" class="btn btn-default btn-sm">Modifier mon compte</button>
+            </a>
+        </div>
+
+            <div class="col-md-4 align_right">
+                <a href="{{ path('fos_user_change_password') }}" title="Modifier mon mot de passe">
+                    <button type="button" class="btn btn-default btn-sm">Modifier mon mot de passe</button>
+                </a>
+            </div>
+
+    </div>
+   {#  <div>
+        <a href="{{ path('fos_user_profile_edit') }}" title="Modifier mon compte">Modifier mon compte </a> 
+        ||
+        <a href="{{ path('fos_user_change_password') }}" title="Modifier mon mot de passe">Modifier mon mot de passe</a>
+    </div> #}
+{% endblock content %}

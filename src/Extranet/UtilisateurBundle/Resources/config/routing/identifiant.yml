@@ -1,0 +1,3 @@
+extranet_utilisateur_identifiant_perdu:
+    pattern:  /perdu
+    defaults: { _controller: ExtranetUtilisateurBundle:Identifiant:perdu}

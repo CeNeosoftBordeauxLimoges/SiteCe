@@ -1,0 +1,3 @@
+extranet_media_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ExtranetMediaBundle:Default:index }

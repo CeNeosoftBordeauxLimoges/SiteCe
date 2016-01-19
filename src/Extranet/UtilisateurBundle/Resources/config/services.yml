@@ -1,0 +1,31 @@
+parameters:
+    extranet_utilisateur.utilisateur_manager.class: Extranet\UtilisateurBundle\Manager\UtilisateurManager
+    extranet_utilisateur.password_generator.class: Extranet\UtilisateurBundle\Service\Password
+    extranet_utilisateur.mailer.class: Extranet\UtilisateurBundle\Service\Mailer
+    extranet_utilisateur.profile.form.type.class: Extranet\UtilisateurBundle\Form\Type\Utilisateur\ProfileFormType
+
+services:
+    # Utilisateur entity manager
+    extranet_utilisateur.utilisateur_manager:
+        class: %extranet_utilisateur.utilisateur_manager.class%
+        arguments: [ "@doctrine.orm.default_entity_manager" ]
+
+    # Service password generator
+    extranet_utilisateur.password_generator:
+        class: %extranet_utilisateur.password_generator.class%
+        mode: lazy
+        arguments: [ "@security.encoder_factory" ]
+
+    # Service mailer
+    extranet_utilisateur.mailer:
+        class: %extranet_utilisateur.mailer.class%
+        mode: lazy
+        arguments: [ "@mailer", "@twig", "@router" ]
+
+    # FOSUserBundle profile form type
+    extranet_utilisateur.profile.form.type:
+        class: %extranet_utilisateur.profile.form.type.class%
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: edit_utilisateur_profil }
+

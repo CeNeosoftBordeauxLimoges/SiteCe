@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets %}
+
+{% block title -%}
+	{{ parent() }} - Accueil
+{% endblock title %}
+
+{% block breadcrumbs -%}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="accueil">Accueil</a>
+{% endblock breadcrumbs %}
+
+{% block content -%}
+
+   <h6> Bonjour {{ app.user.prenom|capitalize }},</BR> Bienvenue sur le site du CE Néo-Soft Bordeaux-Limoges.</h6>
+
+{% endblock content %}

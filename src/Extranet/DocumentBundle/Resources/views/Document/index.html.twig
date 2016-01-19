@@ -1,0 +1,112 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parent() }} - Documents{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Accueil">Accueil</a>
+    &raquo;&nbsp;Documents
+{% endblock breadcrumbs %}
+
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('base/css/extranet.css') }}" />
+
+{% endblock %}
+
+
+{% block content %}
+
+
+    <div id="documents">
+
+        <h1>Liste des documents</h1></br>
+
+        <table id="document" class="table table-striped table-bordered" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Sortable Date</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for document in documents %}
+                <tr>
+                    <td>{{ document.date|date('d/m/Y') }}</td>
+                    <td>{{ document.date|date('Y/m/d') }}</td>
+                    <td>{{ document.description }}</td>
+                    <td>{{ document.type }}</td>
+                    <td>
+
+                        {% if document.extension == 'pdf' %}
+
+                            <a href="{{ path('extranet_document_telecharger', { 'id': document.id }) }}"><img src="{{ asset('base/images/pdf.png') }}" /></a>
+
+                        {% elseif document.extension == 'doc' or document.extension == 'docx' %}
+
+                            <a href="{{ path('extranet_document_telecharger', { 'id': document.id }) }}"><img src="{{ asset('base/images/word.png') }}" /></a>
+
+                        {% elseif document.extension == 'xls' or document.extension == 'xlsx' %}
+
+                            <a href="{{ path('extranet_document_telecharger', { 'id': document.id }) }}"><img src="{{ asset('base/images/excel.png') }}" /></a>
+
+                        {% else %}
+
+                            <a href="{{ path('extranet_document_telecharger', { 'id': document.id }) }}"><img src="{{ asset('base/images/loupe.png') }}" /></a>
+
+                        {% endif %}
+
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+                            <a href="{{ path('extranet_document_modifier', { 'id': document.id }) }}"><img src="{{ asset('base/images/Edit.png') }}"></a>
+                            <a href="{{ path('extranet_document_supprimer', { 'id': document.id }) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce document?')"><img src="{{ asset('base/images/croix.png') }}"></a>
+
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td>Aucun document n'a été trouvé.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+                <a href="{{ path('extranet_document_ajouter') }}"><img src="{{ asset('base/images/ajout.png') }}">Ajouter un document</a>
+
+        {% endif %}
+
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#document').dataTable({
+                "order": [[ 1, "desc" ]],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",
+                },
+                "aoColumns":[
+                              {"iDataSort":1},
+                              {"visible": false},
+                              null,
+                              null,
+                              {"sortable": false}
+                             ]
+            })
+        } );
+    </script>
+
+{% endblock %}

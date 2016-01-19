@@ -1,0 +1,138 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parent() }} - Modifier un document{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Accueil">Accueil</a>
+    &raquo;&nbsp;
+    <a href="{{ path('extranet_document_homepage') }}" title="Documents">Documents</a>
+    &raquo;&nbsp;Modifier un document
+{% endblock breadcrumbs %}
+
+{% block content %}
+
+    <h1>Modifier un document</h1>
+
+
+ {#   {{ form(form) }}   #}
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right">{{ form_label(form.description) }} *</div>
+            <div class="col-md-4">{{ form_widget(form.description,{ 'attr': {'rows': 50},'attr':{'cols':50} })}}</div>
+            <div class="error">{{ form_errors(form.description) }}</div>
+        </div></BR>
+
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right">{{ form_label(form.type) }}</div>
+            <div class="col-md-4">{{ form_widget(form.type, { 'attr': {'size': 50} }) }}</div>
+            <div class="error">{{ form_errors(form.type) }}</div>
+        </div></BR>
+
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right">{{ form_label(form.nom) }}</div>
+            <div class="col-md-4">{{ form_widget(form.nom, { 'attr': {'readonly': 'readonly'}, 'attr': {'size': 50} }) }}</div>
+            <div class="error">{{ form_errors(form.nom) }}</div>
+        </div></BR>
+
+        <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right">{{ form_label(form.file) }}</div>
+            <div class="col-md-4"> {{ form_widget(form.file) }}</div>
+            <div class="error">{{ form_errors(form.file) }}</div>
+        </div></BR>
+
+       {#  <div class="row" id="row_edit_user">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 align_right">{{ form_label(form.active) }}</div>
+            <div class="col-md-4">{{ form_widget(form.active) }}</div>
+            <div class="error">{{ form_errors(form.active) }}</div>
+        </div>
+             #}
+        <p>
+        <div class="row" id="row_edit_user">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <p>
+                    <input type="submit" value="Enregistrer les modifications" class="btn btn-default btn-sm" />
+                </p>
+            </div>
+
+                <a href="{{ path('extranet_document_homepage') }}" onclick="return confirm('Retour à la liste des documents (les données saisies seront perdues) ? ')">
+                    <button type="button"class="btn btn-default btn-sm">Annuler</button>
+                </a>
+        </div>
+    </p>
+
+    {{ form_end(form) }}
+
+    <p>
+        <h5>* Champs obligatoires</h5>
+    </p>
+
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+
+        var mediasCollectionHolder = $('ul.medias');
+
+        var $addFileLink = $('<a href="#" class="add_file_link">Ajouter un document</a>');
+        var $newFileLinkLi = $('<li></li>').append($addFileLink);
+
+        jQuery(document).ready(function() {
+
+            // ajoute un lien de suppression à  tous les éléments li de
+            // formulaires de tag existants
+            mediasCollectionHolder.find('li').each(function() {
+                addFileFormDeleteLink($(this));
+            });
+
+            mediasCollectionHolder.append($newFileLinkLi);
+
+            $addFileLink.on('click', function(e) {
+
+                e.preventDefault();
+
+                // ajoute un nouveau formulaire file (voir le prochain bloc de code)
+                addFileForm(mediasCollectionHolder, $newFileLinkLi);
+            });
+        });
+
+        function addFileFormDeleteLink($fileFormLi) {
+            var $removeFormA = $('<a href="#">Supprimer ce document</a>');
+            $fileFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+
+                e.preventDefault();
+
+                $fileFormLi.remove();
+            });
+        }
+
+        function addFileForm(mediasCollectionHolder, $newFileLinkLi) {
+
+            var prototype = mediasCollectionHolder.attr('data-prototype');
+
+            // Remplace '__name__' dans le HTML du prototype par un nombre basé sur
+            // la longueur de la collection courante
+            var newForm = prototype.replace(/__name__/g, mediasCollectionHolder.children().length);
+
+            // Affiche le formulaire dans la page dans un li, avant le lien "ajouter un document"
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newFileLinkLi.before($newFormLi);
+
+            // ajoute un lien de suppression au nouveau formulaire
+            addFileFormDeleteLink($newFormLi);
+        }
+
+    </script>
+ {% endblock javascripts %}

@@ -1,0 +1,25 @@
+{% block subject -%}
+    Extranet Néo-Soft Limoges : votre identifiant.
+{%- endblock subject %}
+
+{% block body_text -%}
+    Bonjour {{ utilisateur.prenom ~ ' ' ~ utilisateur.nom }},<br />
+    <br />
+
+    Votre identifiant est {{ utilisateur.username }}<br />
+    <br />
+    Cordialement,<br />
+    <br />
+    L'équipe Néo-Soft Limoges.
+{%- endblock %}
+
+{% block body_html -%}
+    Bonjour {{ utilisateur.prenom ~ ' ' ~ utilisateur.nom }},<br />
+    <br />
+
+    Votre identifiant est {{ utilisateur.username }}<br />
+    <br />
+    Cordialement,<br />
+    <br />
+    L'équipe Néo-Soft Limoges.
+{%- endblock %}

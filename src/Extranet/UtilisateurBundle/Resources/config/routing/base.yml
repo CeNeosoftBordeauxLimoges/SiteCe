@@ -1,0 +1,10 @@
+extranet_utilisateur_utilisateur:
+    resource: "@ExtranetUtilisateurBundle/Resources/config/routing/utilisateur.yml"
+    prefix: /utilisateur
+
+extranet_utilisateur_identifiant:
+    resource: "@ExtranetUtilisateurBundle/Resources/config/routing/identifiant.yml"
+    prefix: /identifiant
+
+extranet_utilisateur_accueil:
+    resource: "@ExtranetUtilisateurBundle/Resources/config/routing/accueil.yml"

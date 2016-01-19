@@ -1,0 +1,30 @@
+{% extends "::base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets %}
+
+{% block breadcrumbs %}
+    Mot de passe oublié
+{% endblock %}
+
+{% block content %}
+
+    <h1>Mot de passe oublié</h1>
+    <div id="login">
+        <h3>Renseignez le champ ci-dessous : </h3>
+
+        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" id="form_login" >
+            {% if invalid_username is defined %}
+                <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+            {% endif %}
+            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+            <input type="text" id="username" name="username" required="required" class="form_input" />
+            <input type="submit" name="_submit" value="{{ 'resetting.request.submit'|trans }}"  class="form_submit form_input"/>
+            <hr class="separator" />
+        </form>
+        <a href="{{ path('extranet_utilisateur_accueil_homepage') }}" title="Retour à la page de connexion" class="id_perdu">Retour à la page de connexion</a>
+    </div>
+{% endblock content %}

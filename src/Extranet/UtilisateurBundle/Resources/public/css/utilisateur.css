@@ -1,0 +1,34 @@
+#utilisateurs_content {
+    /*padding: 10px;*/
+}
+
+.utilisateur_link a {
+    text-decoration: none;
+}
+
+#remove:hover{
+    color: firebrick;
+}
+
+.input-xs {
+    height: 20px;
+    padding: 5px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+div label {
+    display: inline-block;
+    width: 200px;
+}
+
+#row_edit_user {
+    margin-bottom: 10px;
+}
+
+.align_right {
+    text-align: right;
+}
+
+

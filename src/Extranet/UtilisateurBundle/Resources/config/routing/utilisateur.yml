@@ -1,0 +1,15 @@
+extranet_utilisateur_utilisateur_homepage:
+    pattern:  /
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:index }
+
+extranet_utilisateur_utilisateur_ajouter:
+    pattern:  /ajouter
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:ajouter }
+
+extranet_utilisateur_utilisateur_modifier:
+    pattern:  /{id}/modifier
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:modifier }
+
+extranet_utilisateur_utilisateur_supprimer:
+    pattern:  /{id}/supprimer
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:supprimer }

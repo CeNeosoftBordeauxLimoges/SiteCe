@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        {# ---------- Balises Meta ---------- #}
+        {% block meta %}
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {% endblock meta %}
+
+        {# ---------- Contenu titre ---------- #}
+        <title>
+            {% block title %}
+                CE Néo-Soft Bordeaux-Limoges
+            {% endblock title %}
+        </title>
+
+        {# ---------- Balises CSS ---------- #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+            <link rel="stylesheet" type="text/css" href="{{ asset('base/css/extranet.css') }}" />
+        {% endblock stylesheets %}
+
+        {# ---------- Favicon ---------- #}
+        {% block favicon %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('base/images/logoCE.png') }}" />
+        {% endblock favicon %}
+
+    </head>
+    <body>
+        <div id="container">
+            {% block body %}
+
+                {# ---------- Header ---------- #}
+                {% block header %}
+                    <header id="header">
+                        <div id="header_wrapper" class="wrapper">
+
+                            {# ---------- Logo ---------- #}
+                            <div id="logo">
+                                {% block logo %}
+                                    <a href="/" title="Accueil">
+                                        <img src="{{ asset('base/images/logoCE.png') }}" alt="Néo-Soft" title="Néo-Soft" />
+                                    </a>
+                                {% endblock logo %}
+                            </div>
+
+                            {# ---------- Menu ---------- #}
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <div id="menu">
+                                    <ul>
+                                        {% block menu %}
+                                            <li><a href= {{ path('extranet_utilisateur_accueil_homepage') }} title="Accueil" class="link_menu">Accueil</a></li>
+
+                                            <li><a href="{{ path('extranet_document_homepage') }}" title="Documents" class="link_menu">Documents</a></li>
+
+                                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+                                                <li><a href="{{ path('extranet_utilisateur_utilisateur_homepage') }}" title="Utilisateurs" class="link_menu">Utilisateurs</a></li>
+
+                                            {% endif %}
+                                        {% endblock menu %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </header>
+                {% endblock header %}
+
+                <div id="wrapper">
+                    <div id="wrapper_wrapper" class="wrapper">
+
+                        {# ---------- Menu Breadcrumbs / Utilisateur connecté ---------- #}
+                        <div id="sub_header">
+
+                            {# ---------- Fil d'Arianne ---------- #}
+                           {# <div id="breadcrumbs">
+                                Vous êtes ici :
+                                {% block breadcrumbs %}
+                                    <a href="/extranet" title="Accueil utilisateur">
+                                        Accueil utilisateur
+                                    </a>
+                                {% endblock breadcrumbs %}
+                            </div> #}
+
+                            {# ---------- Utilisateur connecté ---------- #}
+
+                            <div id="user">
+                                {% block user %}
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                         {#<a href="{{ path('fos_user_profile_show') }}" title="mon compte">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>#}
+                                        <a href="{{ path('fos_user_profile_show') }}" title="mon compte">Mon compte </a> |
+                                        <a href="{{ path('fos_user_security_logout') }}">
+                                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                        </a>
+                                    {% endif %}
+                                {% endblock user %}
+                            </div>
+                        </div>
+
+
+                        {# ---------- Bloc de contenu ---------- #}
+                        <div>
+                            {% for type, messages in app.session.flashbag.all() %}
+                                {% for message in messages %}
+                                    <div class="flash-{{ type }}">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% block content %}
+                                <div id="empty_content">
+                                    Il n'y a pas de contenu à afficher.
+                                </div>
+                            {% endblock content %}
+                        </div>
+
+                    </div>
+                </div>
+
+                {# ---------- Pied de page ---------- #}
+                <footer id="footer">
+                    {% block footer %}
+                        <div id="footer_wrapper" class="wrapper">
+
+                              {#  <li>
+                                    <a href="/extranet/mentions_legales" title="Mentions légales">
+                                        Mentions légales
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/extranet/cgu" title="Conditions générales d'utilisation">
+                                        Conditions générales d'utilisation
+                                    </a>
+                                </li>
+                                #}
+                            <li>
+                                Version 1.0
+                            </li>
+
+                        </div>
+                    {% endblock footer %}
+                </footer>
+
+            {% endblock body %}
+        </div>
+
+        {# ---------- Bloc Javascripts ---------- #}
+        {% block javascripts %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        {% endblock javascripts %}
+
+    </body>
+</html>
