@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Extranet\UtilisateurBundle\ExtranetUtilisateurBundle(),
             new Extranet\MediaBundle\ExtranetMediaBundle(),
             new Extranet\DocumentBundle\ExtranetDocumentBundle(),
+            new Extranet\AngularBundle\ExtranetAngularBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

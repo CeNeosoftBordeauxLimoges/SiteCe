@@ -66,6 +66,10 @@ hr.separator {
     color: #505050;
 }
 
+#header {
+    background-color: #363548;	
+}
+
 #header_wrapper {
     position: relative;
 }
@@ -97,7 +101,7 @@ li {
 }
 
 .link_menu {
-    color: #10729C;
+    color: #FFFFFF;
     display: block;
     height: 22px;
     padding: 0 0 0 10px;

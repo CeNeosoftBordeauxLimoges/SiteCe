@@ -1,0 +1,24 @@
+<div ng-app="libraryApp">
+	<section ng-controller="libraryController">
+        <form id="todo-form" ng-submit="addBook()">
+        	<input id="new-todo" placeholder="Titre du livre" ng-model="newBookTitle" />
+        	<input id="new-todo" placeholder="Auteur" ng-model="newBookAuthor" />
+        	<input class="btn btn-default" type="submit" id="submit" value="Submit" />
+        	<input class="btn btn-default" type="button" id="reset" value="Reset" ng-click="resetFields()"/>
+        </form>
+        <article ng-show="library.length">
+            <ul id="todo-list">
+                <li ng-repeat="book in library" ng-class="{completed: book.completed}">
+                    <div class="view">
+                        <input class="mark" type="checkbox" ng-model="book.completed" />
+                        <span>{[{book.title}]} par {[{book.author}]}</span>
+                        <span class="action"><img src="{{ asset('base/images/edit.png') }}" alt="Modifier" title="Modifier" ng-click="updateBook(book)" /><img src="{{ asset('base/images/croix.png') }}" alt="Modifier" title="Modifier" ng-click="removeBook(book)" /></span>
+                    </div>
+                </li>
+            </ul>
+            <input id="mark-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)" />
+            <label class="btn btn-info" for="mark-all">Tout cocher</label>
+            <button class="btn btn-danger" ng-click="clearCompletedBooks()">Supprimer les livres terminés</button>
+        </article>
+    </section>
+</div>

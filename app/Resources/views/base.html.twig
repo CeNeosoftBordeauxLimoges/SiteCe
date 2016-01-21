@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         {# ---------- Balises Meta ---------- #}
         {% block meta %}
             <meta charset="UTF-8" />
@@ -19,15 +18,14 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
+            
             <link rel="stylesheet" type="text/css" href="{{ asset('base/css/extranet.css') }}" />
         {% endblock stylesheets %}
 
         {# ---------- Favicon ---------- #}
         {% block favicon %}
-            <link rel="icon" type="image/x-icon" href="{{ asset('base/images/logoCE.png') }}" />
+            <link rel="icon" type="image/x-icon" href="{{ asset('base/images/logo_test.png') }}" />
         {% endblock favicon %}
-
     </head>
     <body>
         <div id="container">
@@ -41,8 +39,8 @@
                             {# ---------- Logo ---------- #}
                             <div id="logo">
                                 {% block logo %}
-                                    <a href="/" title="Accueil">
-                                        <img src="{{ asset('base/images/logoCE.png') }}" alt="Néo-Soft" title="Néo-Soft" />
+                                    <a href={{ path('extranet_utilisateur_accueil_homepage') }} title="Accueil">
+                                        <img src="{{ asset('base/images/logoCe.png') }}" alt="Néo-Soft" title="Néo-Soft" />
                                     </a>
                                 {% endblock logo %}
                             </div>
@@ -53,7 +51,8 @@
                                     <ul>
                                         {% block menu %}
                                             <li><a href= {{ path('extranet_utilisateur_accueil_homepage') }} title="Accueil" class="link_menu">Accueil</a></li>
-
+                                            
+                                            {#
                                             <li><a href="{{ path('extranet_document_homepage') }}" title="Documents" class="link_menu">Documents</a></li>
 
                                             {% if is_granted('ROLE_SUPER_ADMIN') %}
@@ -61,6 +60,9 @@
                                                 <li><a href="{{ path('extranet_utilisateur_utilisateur_homepage') }}" title="Utilisateurs" class="link_menu">Utilisateurs</a></li>
 
                                             {% endif %}
+                                            #}
+                                            
+                                            <li><a href= {{ path('extranet_angular_homepage') }} title="AngularJS" class="link_menu">SandBox AngularJS</a></li>
                                         {% endblock menu %}
                                     </ul>
                                 </div>
@@ -137,7 +139,7 @@
                                 </li>
                                 #}
                             <li>
-                                Version 1.0
+                                 Version <img height="50px"  src="{{ asset('base/images/skull.jpg') }}" alt="pirate" title="Pirate" />
                             </li>
 
                         </div>
@@ -152,6 +154,5 @@
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         {% endblock javascripts %}
-
     </body>
 </html>

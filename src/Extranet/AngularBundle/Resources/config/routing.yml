@@ -1,0 +1,3 @@
+extranet_angular_homepage:
+    path:     /angular
+    defaults: { _controller: ExtranetAngularBundle:Angular:index }

@@ -1,0 +1,4 @@
+services:
+#    extranet_angular.example:
+#        class: Extranet\AngularBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
